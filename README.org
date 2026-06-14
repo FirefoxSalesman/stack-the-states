@@ -1,0 +1,33 @@
+#+title: Stack the States
+#+subtitle: A (probably harmful) package for organizing evil states.
+
+* Setup
+Copy stack-the-states somewhere into your loadpath
+You are encouraged to alter this basic config to suit your tastes
+#+begin_src emacs-lisp
+(use-package stack-the-states
+  :general
+  ("C-<escape>" 'stack-the-states-switch-stack)
+  ('(normal insert emacs god symex motion visual operator) "<escape>" 'stack-the-states-go-up)
+  ('(normal god symex) "M-t" 'stack-the-states-go-down)
+  :config
+  ;; If you have symex or god state, you might find these useful
+  (require 'symex)
+  (stack-the-states-make-stack 'symex (stack-the-states-stack-manager :default-state 'evil-symex-state :state-stack '(evil-insert-state evil-normal-state evil-symex-state)))
+  (stack-the-states-make-stack 'god (stack-the-states-stack-manager :default-state 'evil-god-state :state-stack '(evil-emacs-state evil-god-state))))
+#+end_src
+
+* Commands
++ =stack-the-states-go-down=- Move 1 state down the stack.
++ =stack-the-states-go-up=- Move 1 state up the stack.
++ =stack-the-states-switch-stack=- Change to a different stack of states
+
+* Important variables
++ =stack-the-states-current-stack=- The symbol that represents the current stack in use.
+
+* Recommendations
++ This package doesn't really serve a useful purpose until you get some extra evil states to create new stacks (such as god mode or symex).
++ Try using =setq-local= on a hook in order to give certain modes a different default stack.
+
+* Credits
++ [[https://github.com/countvajhula/rigpa][rigpa]]- The inspiration behind this package.
