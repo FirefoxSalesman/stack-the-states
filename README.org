@@ -27,7 +27,7 @@ You are encouraged to alter this basic config to suit your tastes
 
 * Recommendations
 + This package doesn't really serve a useful purpose until you get some extra evil states to create new stacks (such as god mode or symex).
-+ Try using =setq-local= on a hook in order to give certain modes a different default stack.
++ Use =stack-the-states-switch-to-stack= on a hook in order to give certain modes a different default stack.
 
 * Credits
 + [[https://github.com/countvajhula/rigpa][rigpa]]- The inspiration behind this package.

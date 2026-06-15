@@ -74,11 +74,15 @@
   "Add a stack manager to 'stack-the-states-stacks'. NAME is a symbol containing the stack's name. MANAGER is a 'stack-the-states-stack-manager'."
   (add-to-list 'stack-the-states-stacks `(,name . ,manager)))
 
+(defun stack-the-states-switch-to-stack (stack)
+  "Switch to the stack mapped to STACK."
+  (setq-local stack-the-states-current-stack stack)
+  (stack-the-states--default))
+
 (defun stack-the-states-switch-stack ()
   "Switch to a different stack of states."
   (interactive)
-  (setq-local stack-the-states-current-stack (intern (completing-read "Select a stack: " stack-the-states-stacks)))
-  (stack-the-states--default))
+  (stack-the-states-switch-to-stack (intern (completing-read "Select a stack: " stack-the-states-stacks))))
 
 (stack-the-states-make-stack 'evil (stack-the-states-stack-manager :default-state 'evil-normal-state :state-stack '(evil-insert-state evil-normal-state)))
 (stack-the-states-make-stack 'motion (stack-the-states-stack-manager :default-state 'evil-motion-state :state-stack '(evil-motion-state)))
