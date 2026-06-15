@@ -21,6 +21,7 @@
 
 ;;; Code:
 
+(require 'eieio)
 (require 'evil)
 
 (defvar stack-the-states-current-stack 'evil)
